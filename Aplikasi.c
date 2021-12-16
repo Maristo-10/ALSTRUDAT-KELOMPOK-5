@@ -22,13 +22,13 @@ typedef struct rute {
 }rute;
 
 typedef struct dataUser{
-    int rno; //Member of structure
-    char name[20]; //Pointer within structure
-    struct subject{ //Structure within Structure
+    int rno; 
+    char name[20]; 
+    struct subject{
         int scode;
-        char name[20]; //Array within structure
+        char name[20]; 
         int mark;
-    }sub[3]; //Array of Structure
+    }sub[3]; 
     int total;
     float per;
     
