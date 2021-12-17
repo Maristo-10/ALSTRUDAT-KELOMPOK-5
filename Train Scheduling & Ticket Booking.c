@@ -166,3 +166,34 @@ int menu_user(){
 		}
 	}while(again == 'y');
 }
+
+int login_user(){
+			system("cls");  
+			 int i, j, found=0;
+    dataUser s1;
+    dataUser *s;
+    char email[100];
+    char password[100];
+			printf("======================\n");
+			printf("LOGIN\n");
+			printf("======================\n");
+			fflush(stdin);
+			printf("Username : ");
+    		scanf("%[^\n]s",email);
+    		fflush(stdin);
+    		printf("Password : ");
+    		scanf("%[^\n]s",password);
+
+    pf = fopen("dataUser.txt","r");
+    while(fread(&s1,sizeof(dataUser),1,pf)){
+        if(strcmp(s1.email,email)==0){
+            if (strcmp(s1.password,password)==0) {	
+       			menu_user();
+				found = 1;
+				fclose(pf);
+			}else if(!found){
+				login_user();
+			}
+        }
+	}
+}
