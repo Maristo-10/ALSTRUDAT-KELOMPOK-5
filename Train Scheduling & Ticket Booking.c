@@ -524,7 +524,61 @@ int kelola_kota(){
 			}	
 			printf("\nMenu Utama [y/t] ? ");
 			again=getch();
-			break;	
+			break;
+		case 4:	
+			system("cls");
+			int counter3 = 1;
+		    city = fopen("kota.txt","r");
+			printf("#LIHAT DATA KOTA#");
+			printf("\nData Lengkap Kota");
+			printf("\n-------------------------------------------------------------------\n");
+			printf("No\t\tKode Kota\t\tNama Kota\n");
+			while(fread(&k1,sizeof(kota),1,city)) { 
+				printf("%d\t\t%s\t\t\t%s\n",counter3,k1.kode,k1.namaKota);
+				counter3++;
+		    }
+			printf("\n\n-------------------------------------------------------------------");
+    		fclose(city);
+
+    		char kode[10];
+		    printf("\nDelete Kota : DELETE_");
+		    fflush(stdin);
+		    scanf("%[^\n]s",kode);
+			
+			city = fopen("kota.txt","r");
+		    city1 = fopen("temp2.txt","w");
+		    
+		    while(fread(&k1,sizeof(kota),1,city)){
+		        if(strcmp(k1.kode,kode)==0){
+		        	found = 1;			
+		        }
+		        else
+		        
+		        fwrite(&k1,sizeof(kota),1,city1);   
+		    }
+		    fclose(city);
+		    fclose(city1);
+		     if(found){
+		        city = fopen("kota.txt","w");
+		        city1 = fopen("temp2.txt","r");
+		
+		        while(fread(&k1,sizeof(kota),1,city1)){
+		            fwrite(&k1,sizeof(kota),1,city);
+		        }
+		        fclose(city);
+		        fclose(city1);
+		        printf("\nData telah berhasil dihapus\n");
+    		}
+    		
+            printf("Menu Utama [y/t] ? ");
+			again=getch();
+			break;
+		
+		case 5:
+			system("cls");
+			menu_admin();
+			system("cls");
+			break;
 
 	}
 	}while(again == 'y');	
