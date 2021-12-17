@@ -939,3 +939,44 @@ int edit_jadwal() {
 		printf("\n\nnot found");
 	}
 }
+
+int hapus_jadwal() {
+	int i, found=0;
+    jadwal j1;
+    FILE *fp, *fp1;
+    char kode[100];
+    fp = fopen("jadwal.txt","r");
+    
+	system("cls");
+	lihat_jadwal();
+    
+    printf("\nDelete Jadwal : DELETE_");
+    fflush(stdin);
+    scanf("%[^\n]s",kode);
+
+    fp = fopen("jadwal.txt","r");
+    fp1 = fopen("temp.txt","w");
+    while(fread(&j1,sizeof(jadwal),1,fp)){
+        if(strcmp(j1.kode,kode)==0){
+            found = 1;
+        }
+        else
+            fwrite(&j1,sizeof(jadwal),1,fp1);
+    }
+    fclose(fp);
+    fclose(fp1);
+
+
+    if(found){
+        fp = fopen("jadwal.txt","w");
+        fp1 = fopen("temp.txt","r");
+
+        while(fread(&j1,sizeof(jadwal),1,fp1)){
+            fwrite(&j1,sizeof(jadwal),1,fp);
+        }
+        fclose(fp);
+        fclose(fp1);
+    }
+    else
+        printf("\nNot Found.....\n");
+}
