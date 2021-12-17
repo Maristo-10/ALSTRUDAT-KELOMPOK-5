@@ -980,3 +980,48 @@ int hapus_jadwal() {
     else
         printf("\nNot Found.....\n");
 }
+
+int kelola_jadwal(){
+	do{
+		printf("========KELOLA JADWAL KERETA API========\n");
+		printf("1. Tambah Data Jadwal\n");
+		printf("2. Lihat Data Jadwal\n");
+		printf("3. Edit Data Jadwal\n");
+		printf("4. Delete Data Jadwal\n");
+		printf("5. Menu Utama\n");
+		printf("\nPilihan : ");
+		scanf("%d",&pilih7);
+		if(pilih7>5){
+			system("cls");
+            printf("INPUT SALAH, COBA LAGI!!\n");
+		}switch(pilih7){
+			case 1:
+			system("cls");
+			tambah_jadwal();
+			printf("\nMenu Utama [y/t] ? ");
+			again=getch();
+			system("cls");
+			break;
+			
+			case 2:
+			system("cls");
+			lihat_jadwal();
+			printf("\nMenu Utama [y/t] ? ");
+			again=getch();
+			system("cls");
+			break;
+			
+			case 3:
+			edit_jadwal();
+			printf("\nMenu Utama [y/t] ? ");
+			again=getch();
+			system("cls");
+			
+			case 4:
+			hapus_jadwal();
+			printf("\nMenu Utama [y/t] ? ");
+			again=getch();
+			system("cls");
+		}
+	}while(again == 'y');
+}
