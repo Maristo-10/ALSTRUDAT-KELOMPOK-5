@@ -267,3 +267,70 @@ int login_user(){
 }
 	}
 }
+
+int kelola_akun(){
+	system("cls");
+	printf("Halaman Kelola Akun\n");
+	printf("\n===========================\n\n");
+	int i, j, found=0;
+    dataUser s1;
+    char ktp[100];
+    fflush(stdin);
+    printf("Masukkan Nomor KTP : ");
+    scanf("%[^\n]s",ktp);
+
+    pf = fopen("dataUser.txt","r");
+    pf1 = fopen("temp.txt","w");
+    while(fread(&s1,sizeof(dataUser),1,pf)){
+        if(strcmp(s1.ktp,ktp)==0){
+            found = 1;
+            printf("--Data Pengguna--");
+            printf("\nNama Lengkap : %s",s1.nama);
+   			printf("\nNomor Handphone : %s",s1.hp);
+   			printf("\nEmail : %s",s1.email);
+   			printf("\nPassword : %s",s1.password);  
+   			
+   			printf("\n\n--Ubah Data Pengguna--");
+            fflush(stdin);
+        	printf("\nNomor KTP : ");
+	        fflush(stdin);
+	        scanf("%[^\n]s",s1.ktp);
+	        fflush(stdin);
+	        printf("Nama Lengkap : ");
+	        scanf("%[^\n]s",s1.nama);
+	        fflush(stdin);
+	        printf("Nomor Handphone : ");
+	        scanf("%[^\n]s",s1.hp);
+	        fflush(stdin);
+	        printf("Email : ");
+	        scanf("%[^\n]s",s1.email);
+	        fflush(stdin);
+	        printf("Password : ");
+	        scanf("%[^\n]s",s1.password);
+	        fflush(stdin);
+	        printf("Re-Password : ");
+	        scanf("%[^\n]s",s1.repassword);
+        }
+        fwrite(&s1,sizeof(dataUser),1,pf1);
+    }
+    fclose(pf);
+    fclose(pf1);
+
+
+    if(found){
+            pf = fopen("dataUser.txt","w");
+            pf1 = fopen("temp.txt","r");
+
+            while(fread(&s1,sizeof(dataUser),1,pf1)){
+                fwrite(&s1,sizeof(dataUser),1,pf);
+                printf("\n\nData Berhasil Diupdate, Berikut Data Terbaru: ");
+                printf("\nNama Lengkap : %s",s1.nama);
+	   			printf("\nNomor Handphone : %s",s1.hp);
+	   			printf("\nEmail : %s",s1.email);
+	   			printf("\nPassword : %s",s1.password); 
+				   		
+            }
+            fclose(pf);
+            fclose(pf1);
+    }
+}	
