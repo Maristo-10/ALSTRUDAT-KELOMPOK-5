@@ -195,5 +195,75 @@ int login_user(){
 				login_user();
 			}
         }
+	    
+	    int pengguna(){
+		do{
+		system("cls");
+        printf("\n===========================================\n\t\tHalaman User\n-------------------------------------------\n");
+        printf("Pilih salah satu pengguna!");
+        printf("\n1. Registrasi\n");
+        printf("\n2. Login\n");
+        printf("\n3. Keluar");
+        printf("\n-------------------------------------------\n");
+        printf("Pilihan Anda ?");
+        scanf("%d",&pilih2);
+        printf("\n===========================================\n");
+        if(pilih2>3){
+     		system("cls");
+            printf("INPUT SALAH, COBA LAGI!!\n");
+		}switch(pilih2){
+			case 1:
+				
+				system("cls");
+				printf("======================\n");
+				printf("REGISTRASI\n");
+				printf("======================\n");
+				
+		           	 dataUser *s;
+		        	int n,i,j;
+
+		        s = (dataUser*)malloc(100*sizeof(dataUser));
+		        pf = fopen("dataUser.txt","w+");
+		
+		        for(i=0;i<1;i++){
+		        	fflush(stdin);
+		            printf("Nomor KTP : ");
+		            scanf("%[^\n]s",s[i].ktp);
+		            fflush(stdin);
+		            printf("Nama Lengkap : ");
+		            scanf("%[^\n]s",s[i].nama);
+		            fflush(stdin);
+		            printf("Nomor Handphone : ");
+		            scanf("%[^\n]s",s[i].hp);
+		            fflush(stdin);
+		            printf("Email : ");
+		            scanf("%[^\n]s",s[i].email);
+		            fflush(stdin);
+		            printf("Password : ");
+		            scanf("%[^\n]s",s[i].password);
+		            fflush(stdin);
+		            printf("Re-Password : ");
+		            scanf("%[^\n]s",s[i].repassword);
+		
+		            fwrite(s+i,sizeof(dataUser),1,pf);
+				        }
+				    fclose(pf);
+				
+				printf("Kembali ke menu [y/t] ? ");
+        		again=getch();
+				break;	
+			
+			case 2:
+					login_user();
+					break;
+				
+			case 3:
+					system("cls");
+					menu_utama();
+					break;
+		
+		}
+	}while (again == 'y');
+}
 	}
 }
