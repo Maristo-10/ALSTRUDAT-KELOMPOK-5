@@ -334,3 +334,51 @@ int kelola_akun(){
             fclose(pf1);
     }
 }	
+
+int menu_admin(){
+	do{
+		system("cls");
+		printf("========Menu Admin========\n");
+		printf("Welcome Admin \n");
+		printf("1. Kelola Akun\n");
+		printf("2. Kelola Kota\n");
+		printf("3. Kelola Rute\n");
+		printf("4. Lihat Jadwal Kereta Api\n");
+		printf("5. Logout\n");
+		printf("Pilihan Anda : ");
+		scanf("%d",&pilih4);
+		if(pilih4>5){
+			system("cls");
+            printf("INPUT SALAH, COBA LAGI!!\n");
+		}switch(pilih4){
+			case 1:
+			kelola_akun();
+			printf("\nMenu Utama [y/t] ? ");
+    		again=getch();
+			break;
+				
+			case 2:
+				system("cls");
+				kelola_kota();
+				break;
+			
+			case 3:
+				system("cls");
+				kelola_rute();
+				break;
+			
+			case 4:
+				system("cls");
+				kelola_jadwal();
+				printf("\n===========================");
+				printf("\nMenu Utama [y/t] ? ");
+        		again=getch();
+				break;
+			
+			case 5:
+				system("cls");
+				menu_utama();
+				break;	
+		}
+	}while(again == 'y');
+}	
