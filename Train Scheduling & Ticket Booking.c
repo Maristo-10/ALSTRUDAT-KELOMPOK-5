@@ -857,5 +857,89 @@ int lihat_jadwal(){
     fclose(fp);
 }
 
+int edit_jadwal() {
+	jadwal *j;
+	int i=0;
+	int found=0, counter=1;
+    jadwal j1;
+    rute r1;
+    FILE *fp, *fp1, *fp2;
+    
+    char kode[100], kode1[100], kode2[100], kode3[100];
+    
+	system("cls");
+    lihat_jadwal();
 
 
+    fflush(stdin);
+    
+	fp = fopen("rute.txt","r");
+    fp1 = fopen("jadwal.txt","r");
+    fp2 = fopen("temp.txt","w");
+    
+    
+    printf("\n\nEdit Jadwal : \nEDIT_");
+    scanf("%[^\n]s",kode);
+    
+	while(fread(&j1,sizeof(jadwal),1,fp1)){
+    	if(strcmp(j1.kode,kode)==0){
+				found = 1;
+		    	printf("\n\nKode Jadwal : ");
+	    	fflush(stdin);
+	        scanf("%s",j1.kode);
+	        printf("\nTanggal : ");
+	    	fflush(stdin);
+	        scanf("%s",j1.tanggal);
+	        printf("\nWaktu Keberangkatan : ");
+	    	fflush(stdin);
+	        scanf("%s",j1.waktuKbrt);
+	        printf("\nKeberangkatan : ");
+	    	fflush(stdin);
+	        scanf("%s",j1.kbrt);
+	        printf("\nTujuan : ");
+	    	fflush(stdin);
+	        scanf("%s",j1.tjn);
+	        printf("\nKAI : ");
+	    	fflush(stdin);
+	        scanf("%s",j1.kai);
+	        printf("\nJumlah sisa kursi : ");
+	    	fflush(stdin);
+	        scanf("%d",&j1.sisa);   	
+
+			while(fread(&r1,sizeof(rute),1,fp1)) {
+	            if(strcmp(j1.kbrt,r1.keberangkatan)!=0) {
+	            	printf("\n\nKeberangkatan %s tidak ada pada daftar !\n",j1.kbrt);
+				} 
+				
+				if (strcmp(j1.tjn,r1.tujuan)!=0) {
+					printf("\n\nTujuan %s tidak ada pada daftar !\n",j1.tjn);
+				}
+			
+	        }
+	        
+	        
+	    	
+        } 
+        
+    	fwrite(&j1,sizeof(jadwal),1,fp2);
+    }
+    fclose(fp);
+    fclose(fp1);
+    fclose(fp2);
+    
+    if (found==1) {
+	    
+    	fp = fopen("jadwal.txt","w");
+    	fp1 = fopen("temp.txt","r");
+    	
+		while(fread(&j1,sizeof(jadwal),1,fp1)) {
+            fwrite(&j1,sizeof(jadwal),1,fp);
+        }
+        
+	    fclose(fp);
+	    fclose(fp1);
+	    
+	} else {
+		printf("\n\nnot found");
+	}
+}
