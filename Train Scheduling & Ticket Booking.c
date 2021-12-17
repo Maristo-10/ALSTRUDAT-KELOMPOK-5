@@ -837,3 +837,25 @@ int tambah_jadwal() {
     fclose(fp);
 }
 
+int lihat_jadwal(){
+	jadwal *j;
+	jadwal j1;
+    FILE *fp;
+    int n,i;
+	printf("\n\n-------------------------------------------------------------------");
+    fp = fopen("jadwal.txt","r");
+	system("cls");
+	printf("#LIHAT DATA JADWAL#");
+	printf("\nData Lengkap Jadwal Kereta Api");
+	printf("\n-------------------------------------------------------------------\n");
+	printf("Kode Jadwal\tTanggal\t\tWaktu Keberangkatan\t\tKeberangkatan\t\tTujuan\t\tKAI\t\tStatus\n");
+	while(fread(&j1,sizeof(jadwal),1,fp)) { 
+		printf("%s\t\t%s\t\t%s\t\t\t%s\t\t\t%s\tKAI %s\t\t Sisa %d Kursi\n",j1.kode,j1.tanggal, j1.waktuKbrt, j1.kbrt, j1.tjn, j1.kai, j1.sisa);
+    }
+	
+	printf("\n\n-------------------------------------------------------------------");
+    fclose(fp);
+}
+
+
+
