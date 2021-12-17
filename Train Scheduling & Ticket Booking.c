@@ -464,7 +464,67 @@ int kelola_kota(){
             printf("\nMenu Utama [y/t] ? ");
 			again=getch();
 			break;
-			
+		case 3:
+		system("cls");
+		int counter5 =1;
+			prute = fopen("rute.txt","r");
+			system("cls");
+			lihat_rute();
+			char kodeKota[100];
+			printf("\n\n#EDIT DATA RUTE#");
+			fflush(stdin);
+		    printf("\n\nEdit Rute : EDIT_");
+		    scanf("%[^\n]s",kodeKota);
+		    
+		    pf= fopen("kota.txt","r");
+		    prute = fopen("rute.txt","r");
+		    prute1 = fopen("temp3.txt","w");
+		    	while(fread(&r1,sizeof(rute),1,prute)){
+		        	if(strcmp(r1.kode,kodeKota)==0){
+		       			found = 1;
+				    	fflush(stdin);
+			            printf("\nKeberangkatan : ");
+					    scanf("%[^\n]s",r1.keberangkatan);
+					    fflush(stdin);
+					    printf("Tujuan : ");
+					    scanf("%[^\n]s",r1.tujuan);
+					    fflush(stdin);
+					    printf("Bisnis : ");
+					    scanf("%d",&r1.bisnis);
+					    fflush(stdin);
+					    printf("Premium : ");
+					    scanf("%d",&r1.premium);
+						    
+						while(fread(&k1,sizeof(kota),1,pf)) {
+						if(strcmp(r1.keberangkatan,k1.namaKota)==0) {
+	            			strcpy(r1.kode1,k1.kode);
+						} 
+						if (strcmp(r1.tujuan,k1.namaKota)==0) {
+							strcpy(r1.kode2,k1.kode);
+						}
+				        }
+					}
+					fwrite(&r1,sizeof(rute),1,prute1); 
+		    }
+		    fclose(pf);
+		    fclose(prute);
+		    fclose(prute1);
+		    
+		    if (found==1) {
+		    	prute = fopen("rute.txt","w");
+		    	prute1 = fopen("temp3.txt","r");
+		    	
+				while(fread(&r1,sizeof(rute),1,prute1)) {
+		            fwrite(&r1,sizeof(rute),1,prute);
+		            
+		        }
+		        fclose(prute);
+			    fclose(prute1);
+				printf("Data berhasil diubah");
+			}	
+			printf("\nMenu Utama [y/t] ? ");
+			again=getch();
+			break;	
 
 	}
 	}while(again == 'y');	
