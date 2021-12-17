@@ -382,3 +382,20 @@ int menu_admin(){
 		}
 	}while(again == 'y');
 }	
+
+int login_admin(){
+	system("cls");
+        printf("\n===========================================\n\t\tHalaman Admin\n-------------------------------------------\n");
+        printf("Email : ");
+        scanf("%s", &emailAdmin);
+        printf("Password : ");
+        scanf("%s", &passAdmin);
+        if((strcmp(emailAdmin,"admin05")==0) && (strcmp(passAdmin,"admin05") == 0)){
+        	system("cls");
+        	menu_admin();	
+		}else{
+			system("cls");
+			printf("email/password Salah!");
+		}
+    	    
+}
