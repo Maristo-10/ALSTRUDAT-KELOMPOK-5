@@ -777,3 +777,63 @@ int kelola_rute(){
 	}while(again == 'y');
 }
 
+int tambah_jadwal() {
+	jadwal *j;
+	jadwal j1;
+	rute r1;
+    FILE *fp,*fp1;
+    int n,i;
+
+    j = (jadwal*)malloc(100*sizeof(jadwal));
+    fp = fopen("jadwal.txt","a+");
+    fp1 = fopen("rute.txt","r");
+    
+	printf("#TAMBAH DATA JADWAL#\n\n");
+	
+    for(i=0;i<1;i++){
+    	printf("Tambah Data Jadwal : ");
+    	printf("\n\nKode Jadwal : ");
+    	fflush(stdin);
+        scanf("%s",j[i].kode);
+        printf("\nTanggal : ");
+    	fflush(stdin);
+        scanf("%s",j[i].tanggal);
+        printf("\nWaktu Keberangkatan : ");
+    	fflush(stdin);
+        scanf("%s",j[i].waktuKbrt);
+        printf("\nKeberangkatan : ");
+    	fflush(stdin);
+        scanf("%s",j[i].kbrt);
+        printf("\nTujuan : ");
+    	fflush(stdin);
+        scanf("%s",j[i].tjn);
+        printf("\nKAI : ");
+    	fflush(stdin);
+        scanf("%s",j[i].kai);
+        printf("\nJumlah sisa kursi : ");
+    	fflush(stdin);
+        scanf("%d",&j[i].sisa);
+        
+        
+        
+        while(fread(&r1,sizeof(rute),1,fp1)) {
+            if(strcmp(j[i].kbrt,r1.keberangkatan)!=0) {
+            	printf("\n\nKeberangkatan %s tidak ada pada daftar !",j[i].kbrt);
+			} 
+			
+			if (strcmp(j[i].tjn,r1.tujuan)!=0) {
+				printf("\n\nTujuan %s tidak ada pada daftar !",j[i].tjn);
+			}
+		
+        }
+        
+        fwrite(j+i,sizeof(jadwal),1,fp);
+    }
+    
+    printf("\n-----------------------------------------");
+    printf("\nData Berhasil Ditambahkan\n");
+    printf("------------------------------------------");
+    
+    fclose(fp);
+}
+
