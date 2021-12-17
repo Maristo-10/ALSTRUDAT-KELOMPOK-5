@@ -420,3 +420,52 @@ int lihat_kota(){
     		fclose(city);
 }
 
+int kelola_kota(){
+	do{
+	system("cls");
+	printf("========KELOLA KOTA========\n");
+	printf("1. Tambah Data Kota\n");
+	printf("2. Lihat Data Kota\n");
+	printf("3. Edit Data Kota\n");
+	printf("4. Delete Data Kota\n");
+	printf("5. Menu Utama\n");
+	printf("\nPilihan : ");
+	scanf("%d",&pilih5);
+	if(pilih5>5){
+		system("cls");
+            printf("INPUT SALAH, COBA LAGI!!\n");
+	}switch(pilih5){
+		case 1:
+			system("cls");
+			printf("======TAMBAH DATA KOTA======\n");
+			kota *k;
+			FILE *city, *city1;
+			int n,i,j;
+			kota k1;
+			
+			k = (kota*)malloc(100*sizeof(kota));
+			city = fopen("kota.txt","a+");
+			
+			printf("#TAMBAH DATA KOTA#\n\n");
+			for(i=0;i<1;i++){
+				printf("Tambah Kota : ");
+				fflush(stdin);
+			    scanf("%s %s",k[i].kode,k[i].namaKota);
+			    fwrite(k+i,sizeof(kota),1,city);
+			}
+	    
+	    fclose(city);	
+		printf("\nMenu Utama [y/t] ? ");
+        again=getch();		
+			break;
+			
+		case 2:
+			lihat_kota();
+            printf("\nMenu Utama [y/t] ? ");
+			again=getch();
+			break;
+			
+
+	}
+	}while(again == 'y');	
+}
