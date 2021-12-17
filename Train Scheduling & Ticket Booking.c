@@ -399,3 +399,24 @@ int login_admin(){
 		}
     	    
 }
+
+int lihat_kota(){
+	system("cls");
+			kota *k;
+			FILE *city, *city1;
+			int n,i,j;
+			kota k1;
+			int counter = 1;
+		    city = fopen("kota.txt","r");
+			printf("#LIHAT DATA KOTA#");
+			printf("\nData Lengkap Kota");
+			printf("\n-------------------------------------------------------------------\n");
+			printf("No\t\tKode Kota\t\tNama Kota\n");
+			while(fread(&k1,sizeof(kota),1,city)) { 
+				printf("%d\t\t%s\t\t\t%s\n",counter,k1.kode,k1.namaKota);
+				counter++;
+		    }
+			printf("\n\n-------------------------------------------------------------------");
+    		fclose(city);
+}
+
