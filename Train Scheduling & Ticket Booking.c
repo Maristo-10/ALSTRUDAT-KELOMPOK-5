@@ -729,6 +729,50 @@ int kelola_rute(){
 			printf("\nMenu Utama [y/t] ? ");
 			again=getch();
 		break;
+		case 4:
+			system("cls");
+			FILE *drute,*drute1;
+			prute = fopen("rute.txt","r");
+			system("cls");
+			lihat_rute();
+			printf("\n\n#DELETE DATA RUTE#");
+			fflush(stdin);
+		    printf("\n\nDelete Rute : DELETE_");
+		    scanf("%[^\n]s",kodeKota);
+		    
+		    drute = fopen("rute.txt","r");
+		    drute1 = fopen("temp3.txt","w");
+		    	while(fread(&r1,sizeof(rute),1,drute)){
+		    		if(strcmp(r1.kode,kodeKota)==0){
+		        		found = 1;
+		        	}
+				}
+					fwrite(&r1,sizeof(rute),1,drute1); 
+		    
+			fclose(drute);
+			fclose(drute1);
+		    
+		     if(found==1){
+		        drute = fopen("rute.txt","w");
+		        drute1 = fopen("temp3.txt","r");
+		
+		        while(fread(&r1,sizeof(rute),1,drute1)){
+		            fwrite(&r1,sizeof(rute),1,drute);
+		        }
+		        fclose(drute);
+		        fclose(drute1);
+		        printf("\nData telah berhasil dihapus\n");
+    		}
+			
+			printf("\nMenu Utama [y/t] ? ");
+			again=getch();
+		break;
+		
+		case 5:
+		system("cls");
+		menu_admin();
+		system("cls");
+		break;
 		}
 	}while(again == 'y');
 }
