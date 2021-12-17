@@ -913,12 +913,8 @@ int edit_jadwal() {
 				
 				if (strcmp(j1.tjn,r1.tujuan)!=0) {
 					printf("\n\nTujuan %s tidak ada pada daftar !\n",j1.tjn);
-				}
-			
-	        }
-	        
-	        
-	    	
+				}	
+	        }  	
         } 
         
     	fwrite(&j1,sizeof(jadwal),1,fp2);
