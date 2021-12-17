@@ -64,3 +64,36 @@ char namaLengkap[20];
 char kar,again = 'y';	
 char user[20],passw[20];
 char emailAdmin[20], passAdmin[30];
+
+
+int menu_utama(){
+		printf("\n===========================================\n\t\tKereta Api\n-------------------------------------------\n");
+        printf("Pilih salah satu pengguna!");
+        printf("\n1. User");
+        printf("\n2. Admin");
+        printf("\n3. Keluar");
+        printf("\n-------------------------------------------\n");
+        printf("Pilihan Anda ?");
+        scanf("%d",&pilih1);
+        printf("\n===========================================\n");
+        if(pilih1>3){
+     		system("cls");
+            printf("INPUT SALAH, COBA LAGI!!\n");
+		}switch(pilih1){
+			case 1:
+				{
+				pengguna();
+				break;	
+			}
+			case 2:
+				{
+					login_admin();
+					break;
+				}
+			case 3:
+				{
+					system("exit");
+				}
+		}
+	}
+
