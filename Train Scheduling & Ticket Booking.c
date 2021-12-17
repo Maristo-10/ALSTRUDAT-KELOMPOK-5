@@ -65,35 +65,73 @@ char kar,again = 'y';
 char user[20],passw[20];
 char emailAdmin[20], passAdmin[30];
 
-
-int menu_utama(){
-		printf("\n===========================================\n\t\tKereta Api\n-------------------------------------------\n");
-        printf("Pilih salah satu pengguna!");
-        printf("\n1. User");
-        printf("\n2. Admin");
-        printf("\n3. Keluar");
-        printf("\n-------------------------------------------\n");
-        printf("Pilihan Anda ?");
-        scanf("%d",&pilih1);
-        printf("\n===========================================\n");
-        if(pilih1>3){
-     		system("cls");
+int menu_user(){
+	do{
+		system("cls");
+		printf("========Menu Pengguna========\n");
+		printf("Welcome %s \n", user);
+		printf("1. Kelola Profile\n");
+		printf("2. Lihat Data Kota\n");
+		printf("3. Lihat Data Rute\n");
+		printf("4. Lihat Jadwal\n");
+		printf("5. Logout");
+		printf("\nPilihan Anda : ");
+		scanf("%d",&pilih3);
+		if(pilih3>4){
+			system("cls");
             printf("INPUT SALAH, COBA LAGI!!\n");
-		}switch(pilih1){
+		}switch(pilih3){
 			case 1:
-				{
-				pengguna();
-				break;	
-			}
+				system("cls");
+				kelola_akun();
+				printf("\n\nMenu Utama [y/t] ? ");
+        		again=getch();
+        		system("cls");
+				break;
+				
 			case 2:
-				{
-					login_admin();
-					break;
-				}
+				system("cls");
+				kota *k;
+				FILE *city, *city1;
+				int n,i,j;
+				kota k1;
+		    	city = fopen("kota.txt","r");
+				int counter = 1;
+			    city = fopen("kota.txt","r");
+				printf("#LIHAT DATA KOTA#");
+				printf("\nData Lengkap Kota");
+				printf("\n-------------------------------------------------------------------\n");
+				printf("No\t\tKode Kota\t\tNama Kota\n");
+				while(fread(&k1,sizeof(kota),1,city)) { 
+					printf("%d\t\t%s\t\t\t%s\n",counter,k1.kode,k1.namaKota);
+					counter++;
+			    }
+				printf("\n\n-------------------------------------------------------------------");
+	    		fclose(city);
+				printf("\nMenu Utama [y/t] ? ");
+        		again=getch();
+        		system("cls");
+				break;
+			
 			case 3:
-				{
-					system("exit");
-				}
+				system("cls");
+				lihat_rute();
+				printf("\nMenu Utama [y/t] ? ");
+        		again=getch();
+        		system("cls");
+				break;
+			
+			case 4:
+				system("cls");
+				lihat_jadwal();
+				printf("\nMenu Utama [y/t] ? ");
+				again=getch();
+				system("cls");
+			
+			case 5:
+				system("cls");
+				menu_utama();
+				system("cls");
 		}
-	}
-
+	}while(again == 'y');
+}
